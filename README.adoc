@@ -1,0 +1,246 @@
+= modern-gitops-stack-module-cluster-kind
+
+A https://modern-gitops-stack.io[Modern Gitops Stack] module to deploy a KinD cluster based on Docker.
+
+This cluster module is mainly used to deploy a Kubernetes cluster used for testing and development as well as for onboarding new users of the Modern Gitops Stack.
+
+KinD is nothing more than a local Kubernetes cluster using Docker container "nodes". As such, it is required that you have Docker up and running on your machine (the documentation to install Docker is available here https://docs.docker.com/engine/install/[here]).
+
+TIP: An example of a deployment of the Modern Gitops Stack using KinD is available https://github.com/camptocamp/modern-gitops-stack/tree/main/examples/kind[here] as well as an accompanying xref:ROOT:tutorials/deploy_kind.adoc[quick tutorial].
+
+== Usage
+
+This module can be declared by adding the following block on your Terraform configuration:
+
+[source,terraform]
+----
+module "kind" {
+  source = "git::https://github.com/camptocamp/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
+
+  cluster_name = local.cluster_name
+}
+----
+
+You can configure the version of Kubernetes by passing the variable `kubernetes_version`. This variable is nothing more than the tag of the image that is to be deployed. You can see the usable versions in https://hub.docker.com/r/kindest/node/tags[Docker Hub]. 
+
+[source,terraform]
+----
+module "kind" {
+  source = "git::https://github.com/camptocamp/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
+
+  cluster_name = local.cluster_name
+
+  kubernetes_version = "1.29.1"
+}
+----
+
+By default, this module deploys a cluster with a control plane node and 3 worker nodes. If you want to deploy one more worker node, you can do it like this:
+
+[source,terraform]
+----
+module "kind" {
+  source = "git::https://github.com/camptocamp/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
+
+  cluster_name = local.cluster_name
+
+  nodes = [
+    {
+      "platform" = "modern-gitops-stack"
+    },
+    {
+      "platform" = "modern-gitops-stack"
+    },
+    {
+      "platform" = "modern-gitops-stack"
+    },
+    {
+      "platform" = "modern-gitops-stack"
+    },
+  ]
+}
+----
+
+== Technical Reference
+
+=== Dependencies
+
+Obviously, since this module deploys the cluster, it does not depend on any other module of the Modern Gitops Stack. The only thing you'll probably want to configure are some `locals` with some common variables used on all the modules:
+
+[source,terraform]
+----
+locals {
+  kubernetes_version     = "v1.29.0"
+  cluster_name           = "YOUR_CLUSTER_NAME"
+  base_domain            = format("%s.nip.io", replace(module.traefik.external_ip, ".", "-"))
+  cluster_issuer         = "ca-issuer"
+}
+----
+
+// BEGIN_TF_DOCS
+=== Requirements
+
+The following requirements are needed by this module:
+
+- [[requirement_docker]] <<requirement_docker,docker>> (>= 2.23.1)
+
+- [[requirement_kind]] <<requirement_kind,kind>> (>= 0.1.0)
+
+=== Providers
+
+The following providers are used by this module:
+
+- [[provider_kind]] <<provider_kind,kind>> (>= 0.1.0)
+
+- [[provider_docker]] <<provider_docker,docker>> (>= 2.23.1)
+
+=== Resources
+
+The following resources are used by this module:
+
+- https://registry.terraform.io/providers/tehcyx/kind/latest/docs/resources/cluster[kind_cluster.cluster] (resource)
+- https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/data-sources/network[docker_network.kind] (data source)
+
+=== Optional Inputs
+
+The following input variables are optional (have default values):
+
+==== [[input_cluster_name]] <<input_cluster_name,cluster_name>>
+
+Description: The name to give to the cluster.
+
+Type: `string`
+
+Default: `"kind"`
+
+==== [[input_kubernetes_version]] <<input_kubernetes_version,kubernetes_version>>
+
+Description: Kubernetes version to use for the KinD cluster (images available https://hub.docker.com/r/kindest/node/tags[here]).
+
+Type: `string`
+
+Default: `"v1.29.1"`
+
+==== [[input_nodes]] <<input_nodes,nodes>>
+
+Description: List of worker nodes to create in the KinD cluster. To increase the number of nodes, simply duplicate the objects on the list.
+
+Type: `list(map(string))`
+
+Default:
+[source,json]
+----
+[
+  {
+    "platform": "modern-gitops-stack"
+  },
+  {
+    "platform": "modern-gitops-stack"
+  },
+  {
+    "platform": "modern-gitops-stack"
+  }
+]
+----
+
+=== Outputs
+
+The following outputs are exported:
+
+==== [[output_parsed_kubeconfig]] <<output_parsed_kubeconfig,parsed_kubeconfig>>
+
+Description: Kubeconfig blocks to configure Terraform providers.
+
+==== [[output_raw_kubeconfig]] <<output_raw_kubeconfig,raw_kubeconfig>>
+
+Description: Raw `.kube/config` file for `kubectl` access.
+
+==== [[output_kind_subnet]] <<output_kind_subnet,kind_subnet>>
+
+Description: Kind IPv4 Docker network subnet.
+// END_TF_DOCS
+
+=== Reference in table format 
+
+.Show tables
+[%collapsible]
+====
+// BEGIN_TF_TABLES
+= Requirements
+
+[cols="a,a",options="header,autowidth"]
+|===
+|Name |Version
+|[[requirement_docker]] <<requirement_docker,docker>> |>= 2.23.1
+|[[requirement_kind]] <<requirement_kind,kind>> |>= 0.1.0
+|===
+
+= Providers
+
+[cols="a,a",options="header,autowidth"]
+|===
+|Name |Version
+|[[provider_kind]] <<provider_kind,kind>> |>= 0.1.0
+|[[provider_docker]] <<provider_docker,docker>> |>= 2.23.1
+|===
+
+= Resources
+
+[cols="a,a",options="header,autowidth"]
+|===
+|Name |Type
+|https://registry.terraform.io/providers/tehcyx/kind/latest/docs/resources/cluster[kind_cluster.cluster] |resource
+|https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/data-sources/network[docker_network.kind] |data source
+|===
+
+= Inputs
+
+[cols="a,a,a,a,a",options="header,autowidth"]
+|===
+|Name |Description |Type |Default |Required
+|[[input_cluster_name]] <<input_cluster_name,cluster_name>>
+|The name to give to the cluster.
+|`string`
+|`"kind"`
+|no
+
+|[[input_kubernetes_version]] <<input_kubernetes_version,kubernetes_version>>
+|Kubernetes version to use for the KinD cluster (images available https://hub.docker.com/r/kindest/node/tags[here]).
+|`string`
+|`"v1.29.1"`
+|no
+
+|[[input_nodes]] <<input_nodes,nodes>>
+|List of worker nodes to create in the KinD cluster. To increase the number of nodes, simply duplicate the objects on the list.
+|`list(map(string))`
+|
+
+[source]
+----
+[
+  {
+    "platform": "modern-gitops-stack"
+  },
+  {
+    "platform": "modern-gitops-stack"
+  },
+  {
+    "platform": "modern-gitops-stack"
+  }
+]
+----
+
+|no
+
+|===
+
+= Outputs
+
+[cols="a,a",options="header,autowidth"]
+|===
+|Name |Description
+|[[output_parsed_kubeconfig]] <<output_parsed_kubeconfig,parsed_kubeconfig>> |Kubeconfig blocks to configure Terraform providers.
+|[[output_raw_kubeconfig]] <<output_raw_kubeconfig,raw_kubeconfig>> |Raw `.kube/config` file for `kubectl` access.
+|[[output_kind_subnet]] <<output_kind_subnet,kind_subnet>> |Kind IPv4 Docker network subnet.
+|===
+// END_TF_TABLES
+====
