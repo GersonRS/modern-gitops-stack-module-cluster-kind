@@ -6,7 +6,7 @@ This cluster module is mainly used to deploy a Kubernetes cluster used for testi
 
 KinD is nothing more than a local Kubernetes cluster using Docker container "nodes". As such, it is required that you have Docker up and running on your machine (the documentation to install Docker is available here https://docs.docker.com/engine/install/[here]).
 
-TIP: An example of a deployment of the Modern Gitops Stack using KinD is available https://github.com/camptocamp/modern-gitops-stack/tree/main/examples/kind[here] as well as an accompanying xref:ROOT:tutorials/deploy_kind.adoc[quick tutorial].
+TIP: An example of a deployment of the Modern Gitops Stack using KinD is available https://github.com/GersonRS/modern-gitops-stack/tree/main/examples/kind[here] as well as an accompanying xref:ROOT:tutorials/deploy_kind.adoc[quick tutorial].
 
 == Usage
 
@@ -15,7 +15,7 @@ This module can be declared by adding the following block on your Terraform conf
 [source,terraform]
 ----
 module "kind" {
-  source = "git::https://github.com/camptocamp/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
+  source = "git::https://github.com/GersonRS/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
 
   cluster_name = local.cluster_name
 }
@@ -26,7 +26,7 @@ You can configure the version of Kubernetes by passing the variable `kubernetes_
 [source,terraform]
 ----
 module "kind" {
-  source = "git::https://github.com/camptocamp/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
+  source = "git::https://github.com/GersonRS/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
 
   cluster_name = local.cluster_name
 
@@ -39,7 +39,7 @@ By default, this module deploys a cluster with a control plane node and 3 worker
 [source,terraform]
 ----
 module "kind" {
-  source = "git::https://github.com/camptocamp/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
+  source = "git::https://github.com/GersonRS/modern-gitops-stack-module-kind.git?ref=<RELEASE>"
 
   cluster_name = local.cluster_name
 
