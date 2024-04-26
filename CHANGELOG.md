@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/compare/v1.0.0...v1.1.0) (2024-04-26)
+
+
+### Features
+
+* **docs:** update documentation ([62b178e](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/62b178e6ac26aebc33d5f6267b24c79a672a8eda))
+
 ## 1.0.0 (2024-04-24)
 
 
