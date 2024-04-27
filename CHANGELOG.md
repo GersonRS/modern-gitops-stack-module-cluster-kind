@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/compare/v1.1.0...v1.1.1) (2024-04-27)
+
+
+### Bug Fixes
+
+* **docs:** fix ref to tutorials deploy kind ([a7ecd51](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/a7ecd51158c5cb854593fa8920f87c4fd697f7dd))
+
 ## [1.1.0](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/compare/v1.0.0...v1.1.0) (2024-04-26)
 
 
