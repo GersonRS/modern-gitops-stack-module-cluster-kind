@@ -6,7 +6,7 @@ This cluster module is mainly used to deploy a Kubernetes cluster used for testi
 
 KinD is nothing more than a local Kubernetes cluster using Docker container "nodes". As such, it is required that you have Docker up and running on your machine (the documentation to install Docker is available here https://docs.docker.com/engine/install/[here]).
 
-TIP: An example of a deployment of the Modern Gitops Stack using KinD is available https://github.com/GersonRS/modern-gitops-stack/tree/main/examples/kind[here] as well as an accompanying xref:ROOT:tutorials/deploy_kind.adoc[quick tutorial].
+TIP: An example of a deployment of the Modern Gitops Stack using KinD is available https://github.com/GersonRS/modern-gitops-stack/tree/main/examples/kind[here] as well as an accompanying xref:ROOT:ROOT:tutorials/deploy_kind.adoc[quick tutorial].
 
 == Usage
 
