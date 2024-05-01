@@ -118,7 +118,7 @@ Description: Kubernetes version to use for the KinD cluster (images available ht
 
 Type: `string`
 
-Default: `"v1.29.1"`
+Default: `"v1.27.3"`
 
 ==== [[input_nodes]] <<input_nodes,nodes>>
 
@@ -206,7 +206,7 @@ Description: Kind IPv4 Docker network subnet.
 |[[input_kubernetes_version]] <<input_kubernetes_version,kubernetes_version>>
 |Kubernetes version to use for the KinD cluster (images available https://hub.docker.com/r/kindest/node/tags[here]).
 |`string`
-|`"v1.29.1"`
+|`"v1.27.3"`
 |no
 
 |[[input_nodes]] <<input_nodes,nodes>>
