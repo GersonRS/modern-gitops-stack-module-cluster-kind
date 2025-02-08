@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.2](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/compare/v2.4.1...v2.4.2) (2025-02-08)
+
+
+### ⌨️ Code Refactoring
+
+* adjust workflows ([bfcdcea](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/bfcdcea1378308c35efdfe357798eff7837c5029))
+* try adjust code 5 ([f6bded0](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/f6bded0150bb5c02af29e723ea07387c207ca124))
+
 ## [2.4.1](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/compare/v2.4.0...v2.4.1) (2025-02-08)
 
 
