@@ -10,17 +10,7 @@ resource "kind_cluster" "cluster" {
     node {
       role = "control-plane"
       kubeadm_config_patches = [
-        # "kind: ClusterConfiguration\napiServer:\n  extraArgs:\n    \"service-account-issuer\": \"https://kubernetes.default.svc\"\n    \"service-account-signing-key-file\": \"/etc/kubernetes/pki/sa.key\"\n"
-        "kind: InitConfiguration\nnodeRegistration:\n  kubeletExtraArgs:\n    node-labels: \"ingress-ready=true\"\n",
-        {
-          kind = "ClusterConfiguration"
-          apiServer = {
-            extraArgs = {
-              "service-account-issuer" : "https://kubernetes.default.svc"
-              "service-account-signing-key-file" : "/etc/kubernetes/pki/sa.key"
-            }
-          }
-        }
+        "kind: ClusterConfiguration\napiServer:\n  extraArgs:\n    \"service-account-issuer\": \"https://kubernetes.default.svc\"\n    \"service-account-signing-key-file\": \"/etc/kubernetes/pki/sa.key\"\n"
       ]
     }
 
