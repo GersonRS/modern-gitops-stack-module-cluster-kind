@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.5.0](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/compare/v2.4.2...v2.5.0) (2026-01-22)
+
+
+### 🚀 New Features
+
+* add kubeadm config patches ([ce06c4f](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/ce06c4fe56bf4d0ec9a0348d57afd9f8f14d0637))
+* add kubeadm config patches ([ca9cd3c](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/ca9cd3cccce94d7f1e3ab9e9c4d00462d65636a8))
+* update kind provider version to 0.10.0 ([bdbffe8](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/bdbffe8b90de4851628664b4665ecb34265e5950))
+
+
+### 🔥 Bug Fixes
+
+* adjust release please ([ce0e786](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/ce0e786360157adf77d946e3feb3a4b31929d0a7))
+* adjust release please ([b817968](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/b817968b4308963200fd88ee0a896fe356bb85ce))
+* adjust release please again ([7000abd](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/7000abdb10d2584462635814f3eaf5f0da95788d))
+* adjust release please again ([fc6c540](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/fc6c540f4bd20dcf34c92a93e68dcb7e2e621952))
+
+
+### ⚙️ Chores
+
+* update kind provider version to 0.10.0 ([5709036](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/commit/5709036ea81dd9ae35b89bcccaced88bc0d76530))
+
 ## [2.4.2](https://github.com/GersonRS/modern-gitops-stack-module-cluster-kind/compare/v2.4.1...v2.4.2) (2025-02-08)
 
 
